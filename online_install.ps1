@@ -39,7 +39,7 @@ Write-Host "`n[+] License accepted. Fetching components from server..." -Foregro
 
 # ── PATHS CONFIGURATION ───────────────────────────────────────────────────────
 # (පියවර 2 කේදී ඔයා හදන ZIP ලින්ක් එක මෙතන "YOUR_ZIP_URL_HERE" වෙනුවට දාන්න)
-$ZipUrl     = "YOUR_ZIP_URL_HERE" 
+$ZipUrl     = "https://github.com/Prabhath528/pptx-to-pdf-merger/releases/download/v0.0.1/app.zip" 
 $TempZip    = "$env:TEMP\app_temp.zip"
 $InstallDir = "$env:ProgramFiles\PPTX to PDF Merger"
 
