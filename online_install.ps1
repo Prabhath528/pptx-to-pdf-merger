@@ -200,7 +200,7 @@ Write-Host "Fetching License Agreement..." -ForegroundColor Gray
 
 # Replace this URL with the actual address where you host license.html
 # e.g. https://pixelforgestudioprabhath.netlify.app/license.html
-$LicenseUrl = "https://pixelforgestudioprabhath.netlify.app/license.html"
+$LicenseUrl = "https://pixelforgestudioprabhath.netlify.app/license"
 
 try {
     # Fetch the license page
