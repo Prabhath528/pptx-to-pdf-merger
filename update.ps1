@@ -107,7 +107,7 @@ if ($RunningProc) {
     }
 }
 
-# ── DOWNLOAD AND EXTRACT (OVERWRITE IN PLACE) ─────────────────────────────────
+# ── DOWNLOAD, REMOVE OLD VERSION, INSTALL NEW VERSION ────────────────────────
 Write-Host "Downloading update..." -ForegroundColor Gray
 try {
     Invoke-WebRequest -Uri $ZipUrl -OutFile $TempZip -ErrorAction Stop
@@ -117,12 +117,26 @@ try {
     Exit
 }
 
-Write-Host "Installing update..." -ForegroundColor Gray
+Write-Host "Removing old version..." -ForegroundColor Gray
 try {
+    Remove-Item -Path $InstallDir -Recurse -Force -ErrorAction Stop
+    Write-Host "  [+] Old version removed." -ForegroundColor Green
+} catch {
+    Write-Host "  [-] ERROR: Could not remove old installation files." -ForegroundColor Red
+    Write-Host "      Some files may still be in use. Close the app and try again." -ForegroundColor Red
+    Remove-Item -Path $TempZip -Force -ErrorAction SilentlyContinue
+    Exit
+}
+
+Write-Host "Installing new version..." -ForegroundColor Gray
+try {
+    # Re-create the install directory before extracting
+    New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
     Expand-Archive -Path $TempZip -DestinationPath $InstallDir -Force -ErrorAction Stop
+    Write-Host "  [+] New version installed." -ForegroundColor Green
 } catch {
     Write-Host "  [-] ERROR: Failed to extract the update." -ForegroundColor Red
-    Write-Host "      Some files may still be in use. Close the app and try again." -ForegroundColor Red
+    Write-Host "      Please re-run the installer (online_install.ps1) to restore the app." -ForegroundColor Red
     Remove-Item -Path $TempZip -Force -ErrorAction SilentlyContinue
     Exit
 }
