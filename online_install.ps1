@@ -301,7 +301,7 @@ Write-Host "`n[+] License accepted. Fetching components from server..." -Foregro
 
 # ── PATHS CONFIGURATION ───────────────────────────────────────────────────────
 # Replace the zip URL with each new release tag as needed
-$ZipUrl     = "https://github.com/Prabhath528/pptx-to-pdf-merger/releases/download/v0.0.1/app.zip"
+$ZipUrl     = "https://github.com/Prabhath528/pptx-to-pdf-merger/releases/download/v0.0.2/pptx-to-pdf-merger.zip"
 $TempZip    = "$env:TEMP\app_temp.zip"
 $InstallDir = "$env:ProgramFiles\PPTX to PDF Merger"
 
